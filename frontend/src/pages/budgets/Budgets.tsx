@@ -11,7 +11,7 @@ import {
 import { getCategoryIcon } from '../../utils/categoryIcons';
 import BudgetModal from '../../components/Modals/BudgetModal';
 import DeleteConfirmModal from '../../components/Modals/DeleteConfirmModal';
-import './Budgets.css';
+import './budgets.css';
 
 const PlusIcon = () => (
   <svg

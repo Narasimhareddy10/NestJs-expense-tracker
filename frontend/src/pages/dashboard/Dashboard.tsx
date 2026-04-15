@@ -15,7 +15,7 @@ import { dashboardService } from '../../services/dashboardService';
 import type { DashboardStats, SpendingTrend } from '../../types';
 import { formatCurrency, formatDate } from '../../utils/formatters';
 import { getCategoryIcon } from '../../utils/categoryIcons';
-import './Dashboard.css';
+import './dashboard.css';
 
 const CHART_COLORS = [
   '#8b5cf6', // purple

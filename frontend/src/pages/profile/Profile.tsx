@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { formatDate } from '../../utils/formatters';
-import './Profile.css';
+import './profile.css';
 
 const BellIcon = () => (
   <svg

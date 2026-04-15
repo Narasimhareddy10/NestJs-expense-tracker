@@ -4,7 +4,7 @@ import type { Category } from '../../types';
 import { getCategoryIcon } from '../../utils/categoryIcons';
 import CategoryModal from '../../components/Modals/CategoryModal';
 import DeleteConfirmModal from '../../components/Modals/DeleteConfirmModal';
-import './Categories.css';
+import './categories.css';
 
 const PlusIcon = () => (
   <svg

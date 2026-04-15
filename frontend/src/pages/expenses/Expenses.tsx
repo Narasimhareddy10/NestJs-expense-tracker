@@ -12,7 +12,7 @@ import { getCategoryIcon } from '../../utils/categoryIcons';
 import ExpenseModal from '../../components/Modals/ExpenseModal';
 import DeleteConfirmModal from '../../components/Modals/DeleteConfirmModal';
 import CustomSelect from '../../components/CustomSelect/CustomSelect';
-import './Expenses.css';
+import './expenses.css';
 
 const SearchIcon = () => (
   <svg

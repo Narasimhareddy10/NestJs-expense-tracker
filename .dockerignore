@@ -1,0 +1,13 @@
+# .dockerignore
+node_modules
+npm-debug.log
+.env*
+.env.stage.*
+dist
+.git
+.gitignore
+.vscode
+frontend
+*.md
+test
+coverage

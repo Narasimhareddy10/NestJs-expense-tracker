@@ -27,6 +27,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
         database: configService.get('DB_DATABASE'),
         autoLoadEntities: true,
         synchronize: true,
+        ssl: configService.get('STAGE') === 'prod' ? { rejectUnauthorized: false } : false,
       }),
     }),
     AuthModule,

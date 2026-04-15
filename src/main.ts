@@ -7,6 +7,9 @@ import { CategoriesService } from './categories/categories.service';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Add global API prefix
+  app.setGlobalPrefix('api');
+
   // Enable CORS for frontend - allow all origins
   app.enableCors({
     origin: true,

@@ -67,14 +67,28 @@ function Dashboard() {
 
   const { currentMonth, categoryBreakdown, topExpenses } = stats;
 
-  const pieData = categoryBreakdown
-    .map((cat, index) => ({
-      name: cat.categoryName,
-      value: parseFloat(cat.totalSpent) || 0,
-      color: CHART_COLORS[index % CHART_COLORS.length],
-      icon: cat.categoryIcon,
-    }))
-    .filter((item) => item.value > 0); // Only show categories with spending
+  // Handle both possible data formats
+  const pieData = (categoryBreakdown || [])
+    .map(
+      (
+        cat: {
+          categoryName?: string;
+          totalSpent?: string | number;
+          total_spent?: string | number;
+          categoryIcon?: string;
+        },
+        index: number,
+      ) => ({
+        name: cat.categoryName || 'Unknown',
+        value:
+          typeof (cat.totalSpent ?? cat.total_spent) === 'string'
+            ? parseFloat((cat.totalSpent ?? cat.total_spent) as string) || 0
+            : Number(cat.totalSpent ?? cat.total_spent) || 0,
+        color: CHART_COLORS[index % CHART_COLORS.length],
+        icon: cat.categoryIcon || '',
+      }),
+    )
+    .filter((item) => item.value > 0);
 
   const utilizationPercentage = parseFloat(
     currentMonth.budgetUtilization.toString(),

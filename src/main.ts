@@ -7,24 +7,9 @@ import { CategoriesService } from './categories/categories.service';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Enable CORS for frontend
-  const allowedOrigins = process.env.FRONTEND_URL
-    ? [process.env.FRONTEND_URL, 'http://localhost:5173', 'http://127.0.0.1:5173']
-    : ['http://localhost:5173', 'http://127.0.0.1:5173'];
-
+  // Enable CORS for frontend - allow all origins
   app.enableCors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (mobile apps, curl, etc)
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-      // Also allow any vercel.app domain
-      if (origin.endsWith('.vercel.app')) {
-        return callback(null, true);
-      }
-      callback(new Error('Not allowed by CORS'));
-    },
+    origin: true,
     credentials: true,
   });
 

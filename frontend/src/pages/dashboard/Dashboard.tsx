@@ -67,12 +67,14 @@ function Dashboard() {
 
   const { currentMonth, categoryBreakdown, topExpenses } = stats;
 
-  const pieData = categoryBreakdown.map((cat, index) => ({
-    name: cat.categoryName,
-    value: parseFloat(cat.totalSpent),
-    color: CHART_COLORS[index % CHART_COLORS.length],
-    icon: cat.categoryIcon,
-  }));
+  const pieData = categoryBreakdown
+    .map((cat, index) => ({
+      name: cat.categoryName,
+      value: parseFloat(cat.totalSpent) || 0,
+      color: CHART_COLORS[index % CHART_COLORS.length],
+      icon: cat.categoryIcon,
+    }))
+    .filter((item) => item.value > 0); // Only show categories with spending
 
   const utilizationPercentage = parseFloat(
     currentMonth.budgetUtilization.toString(),
@@ -200,8 +202,9 @@ function Dashboard() {
                   cy="50%"
                   innerRadius={60}
                   outerRadius={100}
-                  paddingAngle={2}
+                  paddingAngle={pieData.length > 1 ? 2 : 0}
                   dataKey="value"
+                  minAngle={5}
                 >
                   {pieData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />

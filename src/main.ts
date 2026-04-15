@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { TransformInterceptor } from './transform.interceptor';
 import { ValidationPipe } from '@nestjs/common';
 import { CategoriesService } from './categories/categories.service';
+import { LoggerMiddleware } from './logger.middleware';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -23,6 +24,9 @@ async function bootstrap() {
     }),
   );
   app.useGlobalInterceptors(new TransformInterceptor());
+
+  // Add request logging
+  app.use(new LoggerMiddleware().use);
   // Called Categories service to seed default categories on app startup
   const categoriesService = app.get(CategoriesService);
   await categoriesService.seedDefaultCategories();
